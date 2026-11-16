@@ -48,15 +48,17 @@ jobs:
 
       - name: Prepare APK
         run: |
-          mv app/build/outputs/apk/release/app-release.apk glmAssist.apk
-          sha256sum glmAssist.apk | cut -d' ' -f1 > sha256.txt
+          APK="GLM-Assist_V$VERSION.apk"
+          mv app/build/outputs/apk/release/app-release.apk "$APK"
+          sha256sum "$APK" | cut -d' ' -f1 > sha256.txt
+          echo "APK=$APK" >> "$GITHUB_ENV"
 
       - name: Upload artifact
         if: env.RELEASE != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: glmAssist-v${{ env.VERSION }}
-          path: glmAssist.apk
+          path: ${{ env.APK }}
 
       - name: Publish release
         if: env.RELEASE == 'true'
@@ -67,7 +69,7 @@ jobs:
           if gh release view "$TAG" > /dev/null 2>&1; then
             gh release delete "$TAG" --cleanup-tag --yes
           fi
-          gh release create "$TAG" glmAssist.apk \
+          gh release create "$TAG" "$APK" \
             --target "${{ github.sha }}" \
             --title "GLM-Assist v$VERSION" \
             --notes "Version: \`$VERSION\`

@@ -10,7 +10,7 @@
 [![Android](https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=for-the-badge&logo=android&logoColor=white)](#requirements)
 [![License](https://img.shields.io/github/license/BlazeFTL/GLM-Assist?style=for-the-badge&color=f59e0b)](LICENSE)
 
-### [Download the latest APK](https://github.com/BlazeFTL/GLM-Assist/releases/latest/download/glmAssist.apk)
+### [Download the latest APK](https://github.com/BlazeFTL/GLM-Assist/releases/latest)
 
 </div>
 
@@ -38,7 +38,7 @@ The APK is about 50 KB. No ads, no trackers, no extra dependencies beyond `andro
 ## Install
 
 1. Open the [latest release](https://github.com/BlazeFTL/GLM-Assist/releases/latest).
-2. Download `glmAssist.apk`.
+2. Download `GLM-Assist_V<version>.apk`, for example `GLM-Assist_V1.0.apk`.
 3. Open it and allow installs from your browser or file manager if asked.
 
 Each release lists the SHA-256 of the APK so you can verify the download.
