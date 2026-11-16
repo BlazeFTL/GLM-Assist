@@ -1,9 +1,12 @@
-name: Build Debug APK
+name: Build APK
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -16,8 +19,12 @@ jobs:
           distribution: temurin
           cache: gradle
       - run: chmod +x ./gradlew
-      - run: ./gradlew assembleDebug
-      - uses: actions/upload-artifact@v4
-        with:
-          name: glmAssist-debug
-          path: app/build/outputs/apk/debug/
+      - run: ./gradlew assembleRelease
+      - name: Publish APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mv app/build/outputs/apk/release/app-release.apk glmAssist.apk
+          gh release create "build-${{ github.run_number }}" glmAssist.apk \
+            --title "glmAssist build ${{ github.run_number }}" \
+            --notes "Commit ${{ github.sha }}"
