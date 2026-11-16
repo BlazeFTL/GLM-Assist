@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">glmAssist</string>
+    <string name="app_name" translatable="false">GLM-Assist</string>
     <string name="error_copy">Please select and copy text manually</string>
     <string name="download">Download started:</string>
     <string name="download_saved">Saved to Downloads:</string>
