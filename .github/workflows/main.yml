@@ -4,6 +4,15 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      version:
+        description: Version (for example 1.1)
+        type: string
+        default: '1.0'
+      release:
+        description: Publish GitHub release
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -11,20 +20,58 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ inputs.version || '1.0' }}
+      RELEASE: ${{ github.event_name == 'push' || inputs.release }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Validate version
+        run: |
+          VERSION="${VERSION#v}"
+          if ! [[ "$VERSION" =~ ^[0-9]+(\.[0-9]+){1,2}$ ]]; then
+            echo "Invalid version: $VERSION"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
       - uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: temurin
           cache: gradle
+
       - run: chmod +x ./gradlew
-      - run: ./gradlew assembleRelease
-      - name: Publish APK
+
+      - name: Build
+        run: ./gradlew assembleRelease -PversionName="$VERSION" -PversionCode=${{ github.run_number }}
+
+      - name: Prepare APK
+        run: |
+          mv app/build/outputs/apk/release/app-release.apk glmAssist.apk
+          sha256sum glmAssist.apk | cut -d' ' -f1 > sha256.txt
+
+      - name: Upload artifact
+        if: env.RELEASE != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: glmAssist-v${{ env.VERSION }}
+          path: glmAssist.apk
+
+      - name: Publish release
+        if: env.RELEASE == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mv app/build/outputs/apk/release/app-release.apk glmAssist.apk
-          gh release create "build-${{ github.run_number }}" glmAssist.apk \
-            --title "glmAssist build ${{ github.run_number }}" \
-            --notes "Commit ${{ github.sha }}"
+          TAG="v$VERSION"
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release delete "$TAG" --cleanup-tag --yes
+          fi
+          gh release create "$TAG" glmAssist.apk \
+            --target "${{ github.sha }}" \
+            --title "GLM-Assist v$VERSION" \
+            --notes "Version: \`$VERSION\`
+          Build: \`${{ github.run_number }}\`
+          Commit: \`${{ github.sha }}\`
+          SHA-256: \`$(cat sha256.txt)\`" \
+            --latest

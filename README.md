@@ -1,104 +1,107 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=0:4F46E5,100:06B6D4&text=glmAssist&fontColor=ffffff&fontSize=58&fontAlignY=38&desc=GLM%20chat%20in%20a%20tiny%20native%20wrapper&descAlignY=60&descSize=16&section=header" width="100%" alt="glmAssist"/>
+<img src="assets/banner.svg" alt="GLM-Assist" width="100%">
 
-**A lightweight, open-source Android app for [GLM Chat](https://chat.z.ai/).**
-No bloat, no trackers — just the full Z.ai experience in ~49 KB.
+<br>
 
-[![Release](https://img.shields.io/github/v/release/BlazeFTL/Z-AI-App-GLM?style=for-the-badge&logo=github&color=4F46E5)](https://github.com/BlazeFTL/Z-AI-App-GLM/releases/latest)
-[![Build](https://img.shields.io/github/actions/workflow/status/BlazeFTL/Z-AI-App-GLM/main.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=CI)](https://github.com/BlazeFTL/Z-AI-App-GLM/actions/workflows/main.yml)
-[![Downloads](https://img.shields.io/github/downloads/BlazeFTL/Z-AI-App-GLM/total?style=for-the-badge&color=06B6D4)](https://github.com/BlazeFTL/Z-AI-App-GLM/releases)
-[![License](https://img.shields.io/github/license/BlazeFTL/Z-AI-App-GLM?style=for-the-badge&color=22C55E)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/BlazeFTL/GLM-Assist?style=for-the-badge&color=7c5cff&label=release)](https://github.com/BlazeFTL/GLM-Assist/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/BlazeFTL/GLM-Assist/total?style=for-the-badge&color=22d3ee)](https://github.com/BlazeFTL/GLM-Assist/releases)
+[![Build](https://img.shields.io/github/actions/workflow/status/BlazeFTL/GLM-Assist/main.yml?style=for-the-badge&label=build)](https://github.com/BlazeFTL/GLM-Assist/actions)
+[![Android](https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=for-the-badge&logo=android&logoColor=white)](#requirements)
+[![License](https://img.shields.io/github/license/BlazeFTL/GLM-Assist?style=for-the-badge&color=f59e0b)](LICENSE)
 
-![Android](https://img.shields.io/badge/Android-8.0%2B-34A853?logo=android&logoColor=white)
-![Java](https://img.shields.io/badge/Java-100%25-ED8B00?logo=openjdk&logoColor=white)
-![APK](https://img.shields.io/badge/APK-~49%20KB-blue)
-![Targets](https://img.shields.io/badge/targets-Android%2015%20(SDK%2035)-informational)
+### [Download the latest APK](https://github.com/BlazeFTL/GLM-Assist/releases/latest/download/glmAssist.apk)
 
 </div>
 
 ---
 
-## Overview
+## About
 
-**GLMAsist** wraps [chat.z.ai](https://chat.z.ai/) in a plain Android `WebView` — nothing blocked, nothing injected, nothing collected. It behaves like the desktop site while adding the native pieces a browser tab can't do: file pickers, mic/camera prompts, real downloads, and image saving.
+GLM-Assist wraps [chat.z.ai](https://chat.z.ai/) in a lightweight, no-frills Android app. It opens the GLM web app full screen and adds the native bits a browser tab does not give you: reliable file uploads, working downloads, and voice and camera access.
 
-Built in pure Java with a single dependency (`androidx.webkit`), minified and resource-shrunk to a **~49 KB APK**.
+The APK is about 50 KB. No ads, no trackers, no extra dependencies beyond `androidx.webkit`.
 
 ## Features
 
-- **Unrestricted WebView** — no URL blocking; all in-site navigation stays in the app, external links open in the right app
-- **File uploads** — system file picker with multi-select support
-- **Voice & camera** — runtime permission prompts for mic and camera, granted only when the site asks
-- **Full download support** — regular, `blob:`, and `data:` URLs saved to `Downloads`, with cookies and headers preserved
-- **Save images** — long press any image to download it
-- **Persistent sessions** — cookies kept and flushed on pause; stay logged in
-- **Desktop experience** — spoofed desktop-class user agent for the full site
-- **Day/night theme** — follows the system on Android 10+
-- **Native back navigation** — back button walks WebView history
-- **Tiny & private** — no analytics, no ads, `allowBackup=false`, no unnecessary permissions
+| | |
+|---|---|
+| **Plain WebView** | Loads the real site. No URL blocking or content rewriting. |
+| **File upload** | Pick one or many files from the system picker. |
+| **Voice and camera** | Microphone and camera permissions are requested on demand. |
+| **Smart downloads** | Handles regular, `blob:` and `data:` URLs. Files land in Downloads. |
+| **Image saving** | Long press any image to save it. |
+| **Persistent login** | Cookies and DOM storage are kept between launches. |
+| **Light and dark** | Follows the system theme. |
+| **Tiny footprint** | Minified and resource-shrunk release build. |
 
-## Download
+## Install
 
-<div align="center">
+1. Open the [latest release](https://github.com/BlazeFTL/GLM-Assist/releases/latest).
+2. Download `glmAssist.apk`.
+3. Open it and allow installs from your browser or file manager if asked.
 
-[![Get the APK](https://img.shields.io/badge/Download-glmAssist.apk-4F46E5?style=for-the-badge&logo=android&logoColor=white)](https://github.com/BlazeFTL/Z-AI-App-GLM/releases/latest/download/glmAssist.apk)
+Each release lists the SHA-256 of the APK so you can verify the download.
 
-</div>
+## Requirements
 
-Grab the latest build from [Releases](https://github.com/BlazeFTL/Z-AI-App-GLM/releases). Requires **Android 8.0 (API 26)** or newer. Enable installation from unknown sources when prompted.
-
-## Build from source
-
-```bash
-git clone https://github.com/BlazeFTL/Z-AI-App-GLM.git
-cd Z-AI-App-GLM
-./gradlew assembleDebug
-```
-
-Output: `app/build/outputs/apk/debug/app-debug.apk`
-
-Requires JDK 8+ and Android SDK 35. Release builds are signed, minified (`proguard-android-optimize`), and resource-shrunk; CI publishes them automatically on every push.
+- Android 8.0 (API 26) or newer
+- Android System WebView or Chrome, kept up to date
 
 ## Permissions
 
-| Permission | Why | When |
+| Permission | Why |
+|---|---|
+| `INTERNET` | Load chat.z.ai |
+| `RECORD_AUDIO` | Voice input |
+| `CAMERA` | Photo and camera upload |
+| `MODIFY_AUDIO_SETTINGS` | Audio routing during voice input |
+| `WRITE_EXTERNAL_STORAGE` | Downloads on Android 9 and older only |
+
+## Build
+
+```bash
+git clone https://github.com/BlazeFTL/GLM-Assist.git
+cd GLM-Assist
+./gradlew assembleRelease
+```
+
+Output: `app/build/outputs/apk/release/app-release.apk`
+
+Override the version locally:
+
+```bash
+./gradlew assembleRelease -PversionName=1.1 -PversionCode=2
+```
+
+Requires JDK 17.
+
+## Releases and versioning
+
+Releases are built by GitHub Actions.
+
+| Trigger | Version | Release |
 |---|---|---|
-| `INTERNET` | Load chat.z.ai | Always |
-| `RECORD_AUDIO` | Voice input | Only when the site requests the mic |
-| `CAMERA` | Camera input | Only when the site requests the camera |
-| `WRITE_EXTERNAL_STORAGE` | Save downloads | Android 9 and below only |
+| Push to `main` | `1.0` | Replaces the `v1.0` release |
+| Manual run | Your input, for example `1.1` | Optional, on by default |
 
-Camera and microphone hardware are optional (`required=false`).
+To publish a new version:
 
-## How it works
+1. Open **Actions** and select **Build APK**.
+2. Tap **Run workflow**.
+3. Enter a version such as `1.1` or `1.2`.
+4. Keep **Publish GitHub release** on to create the release, or turn it off to get the APK as a build artifact only.
 
-- **Blob downloads** — a `WebMessageListener` bridge scoped to `https://chat.z.ai` receives blob content as base64 and writes it via `MediaStore` (API 29+) or the public Downloads directory. `URL.revokeObjectURL` is delayed 60 s so links stay fetchable.
-- **HTTP downloads** — routed through `DownloadManager` with session cookies, matching user agent, and referer attached.
-- **Data URLs** — decoded (base64 or percent-encoded) and saved on a background thread.
-- **Filenames** — taken from `Content-Disposition`, else guessed from MIME type, with collision-safe naming (`GLM_yyyyMMdd_HHmmss` fallback).
+The tag, release title and in-app `versionName` all use the version you enter. `versionCode` is the run number, so every build installs as an update over the previous one.
 
-## Project structure
+## Credits
 
-```
-app/src/main/
-├── java/io/github/blazeftl/glmassist/
-│   └── MainActivity.java      # entire app logic
-├── res/                       # icons, layout, strings
-└── AndroidManifest.xml
-.github/workflows/main.yml     # CI build + release
-```
+Based on geminiAssist (GPLv3), which is based on gptAssist and GMaps WV.
 
-## Credits & license
+## License
 
-Based on [geminiAssist](https://github.com/divested-mobile/geminiassist), which builds on **gptAssist** and **GMaps WV** by [Divested Computing Group](https://divested.dev/).
-
-Licensed under **GPL-3.0** — see [LICENSE](LICENSE).
-
-> **Disclaimer:** glmAssist is an unofficial wrapper and is not affiliated with Z.ai or Zhipu AI. All chat content and accounts are handled by chat.z.ai under their terms.
+Licensed under the [GNU GPL v3.0](LICENSE).
 
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:4F46E5,100:06B6D4&section=footer" width="100%" alt=""/>
-
+<sub>Not affiliated with Z.ai or Zhipu AI.</sub>
 </div>
