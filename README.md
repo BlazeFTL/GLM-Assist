@@ -71,7 +71,7 @@ Output: `app/build/outputs/apk/release/app-release.apk`
 Override the version locally:
 
 ```bash
-./gradlew assembleRelease -PversionName=1.1 -PversionCode=2
+./gradlew assembleRelease -PappVersionName=1.1 -PappVersionCode=2
 ```
 
 Requires JDK 17.

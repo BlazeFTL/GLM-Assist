@@ -44,7 +44,7 @@ jobs:
       - run: chmod +x ./gradlew
 
       - name: Build
-        run: ./gradlew assembleRelease -PversionName="$VERSION" -PversionCode=${{ github.run_number }}
+        run: ./gradlew assembleRelease -PappVersionName="$VERSION" -PappVersionCode=${{ github.run_number }}
 
       - name: Prepare APK
         run: |
