@@ -22,6 +22,16 @@ GLM-Assist wraps [chat.z.ai](https://chat.z.ai/) in a lightweight, no-frills And
 
 The APK is about 50 KB. No ads, no trackers, no extra dependencies beyond `androidx.webkit`.
 
+## Screenshots
+
+<div align="center">
+<img src="screenshots/1_home.png" width="230" alt="Home">
+&nbsp;
+<img src="screenshots/2_chat.png" width="230" alt="Chat">
+&nbsp;
+<img src="screenshots/3_attach.png" width="230" alt="Attach files">
+</div>
+
 ## Features
 
 | | |
